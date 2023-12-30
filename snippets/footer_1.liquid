@@ -1,0 +1,297 @@
+<!--Footer-->
+{%  assign sid = section.id  %}
+{%- assign full_width = section.settings.full_width -%}
+<section id="laber_{{sid}}">
+    <div class="main-footer">
+        <div class="{% if full_width %}full-width{% else %}container{% endif %}">
+        	<div class="row">
+          {%- for block in section.blocks -%}
+                  {% case block.settings.col %}
+                        {% when '16%' %}
+                            {%- assign block_width = 'col-lg-2 col-md-2 col-12' -%}
+                        {% when '25%' %}
+                            {%- assign block_width = 'col-lg-3 col-md-3 col-12' -%}
+                        {% when '33%' %}
+                            {%- assign block_width = 'col-lg-4 col-md-4 col-12' -%}
+                        {% when '42%' %}
+                            {%- assign block_width = 'col-lg-5 col-md-5 col-12' -%}
+                        {% when '50%' %}
+                            {%- assign block_width = 'col-lg-6 col-md-6 col-12' -%}
+                        {% when '58%' %}
+                            {%- assign block_width = 'col-lg-7 col-md-7 col-12' -%}
+                        {% when '66%' %}
+                            {%- assign block_width = 'col-lg-8 col-md-8 col-12' -%}
+                        {% when '75%' %}
+                            {%- assign block_width = 'col-lg-9 col-md-9 col-12' -%}
+                        {% when '100%' %}
+                            {%- assign block_width = 'col-12' -%}
+                    {% endcase %}
+            
+                  {%- case block.type -%}
+                  {%- when 'mail' -%} 
+                    
+                  <div class="footer-iteam {{ block_width }}" {{ block.shopify_attributes }}> 
+                    <aside id="block_{{block.id}}" class="labernewsletter widget widget_text">
+                          {%- if block.settings.title != blank -%}
+                          <h3 class="widget-title{% if image != blank %} dn_md{% endif %}">
+                            <span class="txt_title">{{block.settings.title}}</span>
+                            <span class="icon_mobile">
+                                <i class="laber-icon-down icon-chevron-down"></i>
+                                 <i class="laber-icon-up icon-chevron-up"></i>
+                            </span>
+                          </h3>
+                          {%- endif -%}
+                        <div class="widget_footer">
+                          {% if block.settings.sub_title %}
+                          <div class="sub-email" style="color:{{block.settings.cl_text}}">
+                            {{block.settings.sub_title}}
+                          </div>
+                          {% endif %}
+                          
+                          <div class="textwidget">
+                            <div class="footer-mail">                                   	
+                              {%- form 'customer', class:'newsletter-form-footer' -%}
+                              <input type="hidden" name="contact[tags]" value="newsletter">
+                              <div class="mc4wp-form-fields">
+                                <div class="signup-newsletter-form  {{class}}" style="--alo-color-border:{{ block.settings.cl_border }};">
+                                  <div class="col_email">
+                                  <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"  value="{% if customer %}{{ customer.email }}{% endif %}" class="{{class_ip}} input-text" required="required"></div>
+                                  <div class="col_btn">
+                                    <button type="submit" class="submit-btn truncate{% if settings.checkbox_mail %} mail_agree pr{% endif %}">
+                                      <span> 
+                                        {{ 'general.newsletter_form.submit' | t }} 
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                                {%- if settings.checkbox_mail -%}{%- render 'conditions_mail',html:'p',margin:'mt__15',stt_link:settings.link_mail,sid:sid -%}{%- endif -%}
+                              </div>
+                              <div class="mc4wp-response">
+                                {%- if form.posted_successfully? -%}<div class="shopify-message"><i class="las la-check"></i>{{ 'general.newsletter_form.confirmation' | t }}</div>{%- elsif form.errors -%}<div class="shopify-error"><i class="las la-exclamation-triangle"></i>{{ form.errors | default_errors }}</div>{%- endif -%}
+                              </div>
+                              {%- endform -%}								
+                            </div>
+                          </div>
+                    
+                          {% if block.settings.sub_title2 %}
+                          <div class="sub-email2" style="color:{{block.settings.cl_text}}">
+                            {{block.settings.sub_title2}}
+                          </div>
+                          {% endif %}
+                        </div>
+                    </aside>
+                  </div>
+                    {% style %}
+                        #block_{{block.id}}.widget_mail .widget_footer .signup-newsletter-form .submit-btn{background: {{ block.settings.cl_sub }};border-color: {{ block.settings.cl_sub }};}
+                        #block_{{block.id}}.widget_mail .widget_footer .signup-newsletter-form .submit-btn:hover{background: {{ block.settings.cl_sub_hover }};border-color: {{ block.settings.cl_sub_hover }};}
+                      {% endstyle %}  
+				  {%- when 'text' -%}
+                    
+                          <div class="footer-iteam {{ block_width }}" {{ block.shopify_attributes }}>
+                        <aside id="block_{{block.id}}" class="widget widget_text">
+                             {%- if block.settings.title != blank -%}
+                            	<h3 class="widget-title"><span class="txt_title">{{block.settings.title}}</span>
+                                  <span class="icon_mobile">
+                                      <i class="laber-icon-down icon-chevron-down"></i>
+                                       <i class="laber-icon-up icon-chevron-up"></i>
+                                  </span>
+                            	</h3>{%- endif -%}
+                             <div class="textwidget widget_footer">{{block.settings.content}}</div>
+                          </aside>
+						</div>
+                   {%- when 'contact_information' -%}
+                    
+                        <div class="footer-iteam contact_information {{ block_width }}" {{ block.shopify_attributes }}>
+                        <aside id="block_{{block.id}}" class="widget widget_text">
+                             {%- if block.settings.title != blank -%}
+                            	<h3 class="widget-title"><span class="txt_title">{{block.settings.title}}</span>
+                                  <span class="icon_mobile">
+                                    <i class="laber-icon-down icon-chevron-down"></i>
+                                     <i class="laber-icon-up icon-chevron-up"></i>
+                                </span>
+                            	</h3>{%- endif -%}
+                             <div class="textwidget widget_footer">
+                               <div class="information">
+                                    {%- if block.settings.text1 -%}<div class="text">{{ block.settings.text1 }} </div>{%endif%}
+                                   {%- if block.settings.show_phone -%}
+                                 		<a class="phone" href="tel:{{shop.phone}}" style="color:{{ block.settings.cl_phone }}">{{shop.phone}}</a>
+                                   {%endif%}
+                                  {%- if block.settings.text2 -%}<div class="Address">{{ block.settings.text2 }} </div>{%endif%}
+                                   
+                                   {%- if block.settings.show_email -%}
+                                 		<a href="mailto:{{shop.email}}">{{shop.email}}</a>
+                                   {%endif%}
+                               </div>	
+                          	 </div>
+                          </aside>
+						</div>
+                   {%- when 'logo-footer' -%}
+                    
+                      <div class="footer-iteam {{ block_width }}" {{ block.shopify_attributes }}>
+                      <aside id="block_{{block.id}}" class="widget widget_text ">
+                      
+                    {% if block.settings.use_logo_footer %}
+                      <div class="logo-footer">
+                        {% if block.settings.logo_footer != blank %}
+                          <a href="{{ routes.root_url }}" class="site-header__logo-image">
+                          {% capture image_size %}{{ block.settings.logo_max_width | escape }}{% endcapture %}
+                          <img                                          
+                          src="{{ block.settings.logo_footer | img_url: image_size, scale: 2 }}"                      
+                          alt="{{ logo_alt | escape }}"
+                          style="max-width: {{ image_size }}px; width:auto; height:auto;">
+                          </a>
+                        {% else %}
+                          <a class="site-title" href="{{ routes.root_url }}" itemprop="url"><span class="logo-default">{{ shop.name }}</span></a>
+                        {% endif %}
+                     </div>
+                    {% endif %}
+                      {%if block.settings.use_social%}
+                               	{%- if block.settings.title_social != blank-%}
+                                  <h3 class="widget-title"><span class="txt_title">{{block.settings.title_social}}</span>
+                                   <span class="icon_mobile">
+                                      <i class="laber-icon-down icon-chevron-down"></i>
+                                       <i class="laber-icon-up icon-chevron-up"></i>
+                                  </span>	
+                            	</h3>
+                               {%endif%}
+                                {% assign type_social = block.settings.type_social | plus: 0 %}
+                                {%- if type_social == 1 -%}
+                                  {% render 'social_link' %}
+                                {%- else -%}
+                                  {% render 'social-sharing' %}
+                                {%- endif -%}
+                              {% endif %}
+                        </aside>
+                        </div>
+                  {%- when 'html' -%}
+                    
+                          <div class="footer-iteam {{ block_width }}" {{ block.shopify_attributes }}>
+                            <aside id="block_{{block.id}}" class="widget widget_text ">
+                             {%- if block.settings.title != blank -%}
+                            	<h3 class="widget-title"><span class="txt_title">{{block.settings.title}}</span>
+                                 <span class="icon_mobile">
+                                    <i class="laber-icon-down icon-chevron-down"></i>
+                                     <i class="laber-icon-up icon-chevron-up"></i>
+                                </span>	
+                            	</h3>
+                            {%- endif -%}
+                             <div class="textwidget widget_footer">
+                               {%- if block.settings.content != blank-%}
+                               <div class="contentHtml">
+                               		{{block.settings.content}}
+                               </div>
+                               {%endif%}
+                               {%if block.settings.use_social%}
+                               	{%- if block.settings.title_social != blank-%}
+                                <p class="title_social">
+                                  {{block.settings.title_social}}
+                                </p>
+                               {%endif%}
+                                {% assign type_social = block.settings.type_social | plus: 0 %}
+                                {%- if type_social == 1 -%}
+                                  {% render 'social_link' %}
+                                {%- else -%}
+                                  {% render 'social-sharing' %}
+                                {%- endif -%}
+                              {% endif %}
+                              </div>
+                          </aside>
+						</div>
+                       {%- when 'image' -%}
+                          <div class="footer-iteam {{ block_width }}" {{ block.shopify_attributes }}>
+                            <aside id="block_{{block.id}}" class="widget widget_text ">
+                             {%- if block.settings.title != blank -%}
+                            	<h3 class="widget-title"><span class="txt_title">{{block.settings.title}}</span>
+                                 <span class="icon_mobile">
+                                    <i class="laber-icon-down icon-chevron-down"></i>
+                                     <i class="laber-icon-up icon-chevron-up"></i>
+                                </span>
+                            	</h3>
+                            {%- endif -%}
+                             <div class="textwidget widget_footer">
+                                    <div class="image-footer">
+                                    {% if block.settings.image != blank %}
+                                    {% capture image_size %}{{ block.settings.max_width | escape }}{% endcapture %}
+                                    <img alt="{{ section.settings.image.alt | escape }}"                                         
+                                    src="{{ block.settings.image | img_url: image_size, scale: 2 }}"                      
+                                    style="max-width: {{ image_size }}px;">
+                                    {% endif %}
+                                    </div>
+                              </div>
+                          </aside>
+						</div>
+                    {%- when 'menu' -%}
+                     
+                          <div class="footer-iteam {{ block_width }}" {{ block.shopify_attributes }}>
+                            <aside id="block_{{block.id}}" class="widget widget_nav_menu">
+                             {%- if block.settings.title != blank -%}
+                            	<h3 class="widget-title "><span class="txt_title">{{block.settings.title}}</span>
+                                  	<span class="icon_mobile">
+                                      <i class="laber-icon-down icon-chevron-down"></i>
+                                       <i class="laber-icon-up icon-chevron-up"></i>
+                                  </span>
+                            	</h3>{%- endif -%}
+                             <div class="menu_footer widget_footer">
+                              {%- assign menu = block.settings.menu -%}
+                              {%- if menu != blank -%}
+                                <ul class="menu">
+                                  {%- for link in linklists[menu].links -%}
+                                   <li class="menu-item{% if link.active %}active{% endif %}">
+                                     <a href="{{ link.url }}">{{ link.title | split: '[' | first }}
+                                     
+                                     {% if link.object.all_products_count %}
+                                    	 <span class="n_products">({{ link.object.all_products_count }})</span>
+                                     {%endif%}
+                                     </a>
+                                  	</li>
+                                   {%- endfor -%}
+                                </ul>
+                                {%- else -%}
+                                  You have not selected the footer menu
+                                {%- endif -%}
+                             </div>
+                          </aside>
+                            </div>
+                     
+                  {%- endcase -%}
+              {%- endfor -%}
+        </div>
+        </div>
+      </div>
+</section>
+      {% if section.settings.show_bottom %}
+        {%- assign img_payment = section.settings.img_payment -%}
+      <div class="line"></div>
+      <div class="footer-bottom " style="background-color:{{ section.settings.cl_bg }}">
+          <div class="{% if full_width %}full-width{% else %}container{% endif %}">
+              <div class="row">
+                  {% if section.settings.copyright %}
+                    <div class="copyright col-lg-6 col-md-12 col-12">{{ section.settings.copyright }}</div>
+                  {% endif %}
+                  {% if section.settings.title-payment %}
+                  <div class="payment col-lg-6 col-md-12 col-12">
+                    <span>{{ section.settings.title-payment }}</span>
+                     
+                    {% if section.settings.svg_custom and section.settings.show_svg_custom%}
+                      <div class="payment_type_svg">
+                      {%- assign svg_custom = section.settings.svg_custom | remove: ' ' | split:"," -%}
+                      {%- for img in svg_custom -%}
+                            <img class="lazyload img_tr_svg" src="{{ img | payment_type_img_url }}" data-src="{{ img | payment_type_img_url }}" alt="{{img | replace:'_',' '}}" />
+                      {%- endfor -%}
+                      </div>
+                    <style>
+                         .payment_type_svg{display: flex;flex-wrap: wrap;gap: 5px;} 
+                        .payment_type_svg img {border-radius: 3px; height: {{section.settings.svg_height}}px;}
+                    </style>
+                    {%- else -%}  
+                      {% if img_payment !=blank %}
+                      {% render 'responsive-image', image: img_payment, image_class: 'w-auto h-full' %}
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                  {% endif %}  
+              </div>
+          </div>  
+      </div>
+      {% endif %}
+<!--/Footer-->

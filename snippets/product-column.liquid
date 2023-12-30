@@ -1,0 +1,49 @@
+{% assign show_secondary_image = settings.product_collection_show_secondary_image %}
+{% assign media_aspect_ratio = settings.product_collection_image_ratio %}
+  {%- liquid
+    assign ratio = 1
+    if product.featured_media and media_aspect_ratio == 'portrait'
+      assign ratio = 0.8
+    elsif product.featured_media and media_aspect_ratio == 'adapt'
+      assign ratio = product.featured_media.aspect_ratio
+    endif
+    if ratio == 0 or ratio == nil
+      assign ratio = 1
+    endif
+  -%}
+<div class="product-item">
+  <div class="product-collection" >
+  <div class="product-inner">
+    <div class="row row-0 alo-gap" style="--alo-gap:10px;">
+    <div class="card__media"> 
+        <div class="media h-full w-full {% if show_secondary_image %} secondary_image_hover{% endif %}">
+           <a href="{{ product.url | within: collection }}" 
+            class="d-block image_product cursor-default {% if product.featured_media %} ratio{% endif %}" 
+            style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+            data-js-product-image >
+              {% render 'product-image' with card_product: product show_secondary_image: show_secondary_image %}
+            </a>
+        </div>
+     </div>
+
+      <div class="info"> 
+            <h3 class="name_product">
+              <a href="{{ product.url }}">{{ product.title}}</a>
+            </h3>
+            <div class="product-collection__price ">
+                {%- if product.price_varies -%}
+                  <div class="price">{{ product.price_min | money }} – {{ product.price_max | money }}</div>
+                {%- else -%}
+                  {% if product.compare_at_price >  product.price%}
+                  <div class="price price--sale">{{ product.price | money}}</div> 
+				  <div class="compare"> {{ product.compare_at_price | money}}</div>
+                  {% else %}
+                     <div class="price ">{{ product.price | money}}</div>
+                   {%- endif -%} 
+                {%- endif -%}
+            </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

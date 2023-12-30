@@ -1,0 +1,92 @@
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "show_title_page": true,
+        "h_position": "center",
+        "v_position": "middle",
+        "txt_align": "center",
+        "bg_breadcrumb_blog": "shopify:\/\/shop_images\/bg_breadcrumbs.png",
+        "bg": "#ffffff",
+        "cl_title": "#ffffff",
+        "cl_breadcrum": "#8d979e",
+        "b_height": 200,
+        "mg_bottom": 0,
+        "mobile_bg": "#f1f5f6",
+        "mobile_ht": 120,
+        "mobile_mg_bottom": 0
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "932fc3a4-132b-4a34-b5d0-91df6362734c": {
+          "type": "menu",
+          "settings": {
+            "enable_menu_categories": true,
+            "title_categories": "Product Categories",
+            "menu": "product-categories"
+          }
+        },
+        "8c220f0e-85e3-4967-8524-732f287eb46d": {
+          "type": "product",
+          "settings": {
+            "title": "Featured product",
+            "product1": "proenza-schouler-white-label-22",
+            "product2": "proenza-schouler-white-label-19",
+            "product3": "apple-iphone-13-mini-128gb-pink-unlocked",
+            "product4": "proenza-schouler-white-label-20"
+          }
+        },
+        "d1f87686-4bdb-47c4-a938-983ce2683a19": {
+          "type": "banner_img",
+          "settings": {
+            "image_promobox": "shopify:\/\/shop_images\/img_1_8.jpg",
+            "url": "shopify:\/\/collections\/laptop-ipad",
+            "title": "top cameras",
+            "content": "<h3>Laptop<\/h3>\n<h4>Macbook M1<\/h4>\n<p>Just from: <span class=\"price\">$120.99<\/span><\/p>",
+            "btn": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "932fc3a4-132b-4a34-b5d0-91df6362734c",
+        "8c220f0e-85e3-4967-8524-732f287eb46d",
+        "d1f87686-4bdb-47c4-a938-983ce2683a19"
+      ],
+      "settings": {
+        "full-width": false,
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "h_des": "200px",
+        "h_tb": "200px",
+        "h_mb": "85px",
+        "products_per_page": 20,
+        "grid_list": "1",
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "filter_right": false,
+        "enable_sorting": true,
+        "visible": 5,
+        "widescreen": 5,
+        "desktop": 5,
+        "laptop": 4,
+        "notebook": 3,
+        "tablet": 2,
+        "landscape": 2,
+        "portrait": 2,
+        "mobile": 1,
+        "padding_lr": 2.5,
+        "mg": ",,100px,",
+        "pd": "40px,,,",
+        "mg_mb": ",,50px,",
+        "pd_mb": "15px,,,"
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "product-grid"
+  ]
+}

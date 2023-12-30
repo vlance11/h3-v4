@@ -1,0 +1,31 @@
+{%- assign time = block.settings.custom_liquid -%}  
+{% if time !=blank %}
+{%- assign data_times = time | split: 'T'  -%}
+{%- assign ymd = data_times[0] | split: '-'  -%}
+{%- assign his = data_times[1] | split: ':'  -%}
+  
+{% assign now = 'now' | date: '%Y-%m-%d' %}
+{% assign today_date = now | date: '%s' %}
+{% assign pre_date = data_times[0] | date: '%s' %}
+{% if pre_date > today_date  %}  
+
+<div class="countdown-wrap">
+    {% if block.settings.text !=blank %}
+    <div class="countdown-label ">
+      {{ block.settings.text }}
+    </div>
+    {% endif %}
+    <div class="cms-countdown" data-y="{{ymd[0]}}" data-m="{{ymd[1]}}" data-d="{{ymd[2]}}"  data-h="{{his[0]}}"  data-i="{{his[1]}}" data-s="{{his[2]| remove:"Z"}}"></div>
+</div>
+{% style %}
+:root {
+--color-bg-countdown:{{block.settings.bg}};
+--color-bd-countdown:{{block.settings.bd}};
+--color-cl-title:{{block.settings.cl_title}};
+--color-cms-countdown:{{block.settings.bg_countdown}};
+--color-text-countdown:{{block.settings.cl_text}};
+}  
+{% endstyle %}
+{% endif %}
+{% endif %}
+  
